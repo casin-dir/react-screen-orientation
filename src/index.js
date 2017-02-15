@@ -110,15 +110,15 @@ export default class DeviceOrientation extends Component {
     onOrientationChange(orientation, type, angle)
   }
 
-  lockOrientation ({lockOrientation}) {
+  lockOrientation ({lockOrientation, onLockOrientation}) {
     if (typeof lockOrientation !== 'string') {
       return
     }
-    const onLockOrientation = this.props.onLockOrientation || noop
+    const _onLockOrientation = onLockOrientation || noop
     return lock(lockOrientation).then(function () {
-      onLockOrientation(true)
+        _onLockOrientation(true)
     }).catch(function () {
-      onLockOrientation(false)
+        _onLockOrientation(false)
     })
   }
 
